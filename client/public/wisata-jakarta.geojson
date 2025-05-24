@@ -1,0 +1,38 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [106.827153, -6.175392]
+      },
+      "properties": {
+        "name": "Monas (Monumen Nasional)",
+        "kategori": "Wisata Sejarah"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [106.802002, -6.301869]
+      },
+      "properties": {
+        "name": "Ragunan Zoo",
+        "kategori": "Kebun Binatang"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [106.807036, -6.127583]
+      },
+      "properties": {
+        "name": "Ancol Dreamland",
+        "kategori": "Taman Hiburan"
+      }
+    }
+  ]
+}
