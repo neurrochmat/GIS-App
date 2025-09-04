@@ -1,0 +1,141 @@
+.wisata-detail {
+  background: var(--white);
+  border-radius: 8px;
+  box-shadow: var(--shadow-1);
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.wisata-detail-header {
+  margin-bottom: 20px;
+}
+
+.wisata-detail-header h2 {
+  margin: 0 0 10px;
+  color: var(--text-primary);
+}
+
+.wisata-detail-kategori {
+  display: inline-block;
+  padding: 4px 8px;
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.wisata-detail-section {
+  margin-bottom: 24px;
+}
+
+.wisata-detail-section h3 {
+  color: var(--text-primary);
+  margin: 0 0 12px;
+  font-size: 1.1rem;
+}
+
+.jam-operasional {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 8px;
+}
+
+.harga-tiket {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+}
+
+.harga-item {
+  background: var(--background);
+  padding: 12px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.harga-item .label {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.harga-item .value {
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.fasilitas-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.fasilitas-item {
+  background: var(--background);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.gallery-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.gallery-item {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+.kontak-social {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.kontak-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kontak-item a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.kontak-item a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .wisata-detail {
+    border-radius: 0;
+    padding: 16px;
+  }
+  
+  .jam-operasional {
+    grid-template-columns: 1fr;
+  }
+  
+  .gallery-container {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+}

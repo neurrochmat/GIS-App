@@ -1,0 +1,237 @@
+.admin-dashboard {
+  padding: 24px;
+  background: var(--white);
+  border-radius: 8px;
+  box-shadow: var(--shadow-1);
+}
+
+.dashboard-header {
+  margin-bottom: 24px;
+}
+
+.dashboard-header h2 {
+  margin: 0 0 16px;
+  color: var(--text-primary);
+}
+
+.tab-navigation {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--divider-color);
+  padding-bottom: 12px;
+}
+
+.tab-button {
+  padding: 8px 16px;
+  border: none;
+  background: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 1rem;
+  position: relative;
+}
+
+.tab-button.active {
+  color: var(--primary-color);
+}
+
+.tab-button.active::after {
+  content: '';
+  position: absolute;
+  bottom: -13px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--primary-color);
+}
+
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.stat-card {
+  background: var(--background);
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.stat-card h3 {
+  margin: 0 0 12px;
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--primary-color);
+  margin: 0;
+}
+
+/* Recent Activities */
+.recent-activities {
+  background: var(--background);
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.recent-activities h3 {
+  margin: 0 0 16px;
+  color: var(--text-primary);
+}
+
+.activity-item {
+  display: flex;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--divider-color);
+}
+
+.activity-item:last-child {
+  border-bottom: none;
+}
+
+.activity-time {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+/* User Management */
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.user-table th,
+.user-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--divider-color);
+}
+
+.user-table th {
+  background: var(--background);
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.status-badge.active {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.status-badge.banned {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.btn-ban,
+.btn-unban {
+  padding: 4px 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.btn-ban {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.btn-unban {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+/* Bulk Upload */
+.bulk-upload {
+  background: var(--background);
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.upload-form {
+  margin: 20px 0;
+}
+
+.file-input-container {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.btn-upload {
+  padding: 8px 16px;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-upload:disabled {
+  background: var(--divider-color);
+  cursor: not-allowed;
+}
+
+.upload-status {
+  margin: 12px 0;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.upload-instructions {
+  margin-top: 24px;
+  padding: 16px;
+  background: white;
+  border-radius: 4px;
+}
+
+.upload-instructions h4 {
+  margin: 0 0 12px;
+  color: var(--text-primary);
+}
+
+.upload-instructions ul {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .admin-dashboard {
+    padding: 16px;
+  }
+
+  .tab-navigation {
+    flex-wrap: wrap;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .file-input-container {
+    flex-direction: column;
+  }
+
+  .user-table {
+    display: block;
+    overflow-x: auto;
+  }
+}

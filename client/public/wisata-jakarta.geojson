@@ -33,6 +33,116 @@
         "name": "Ancol Dreamland",
         "kategori": "Taman Hiburan"
       }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [107.4025, -7.1666]
+      },
+      "properties": {
+        "name": "Kawah Putih",
+        "kategori": "Wisata Alam"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [107.6186, -6.7597]
+      },
+      "properties": {
+        "name": "Tangkuban Perahu",
+        "kategori": "Wisata Alam"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [110.2038, -7.6079]
+      },
+      "properties": {
+        "name": "Candi Borobudur",
+        "kategori": "Wisata Sejarah"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [110.3644, -7.7956]
+      },
+      "properties": {
+        "name": "Malioboro",
+        "kategori": "Wisata Belanja"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.7378, -7.2458]
+      },
+      "properties": {
+        "name": "Tugu Pahlawan",
+        "kategori": "Wisata Sejarah"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.7927, -7.1915]
+      },
+      "properties": {
+        "name": "Jembatan Suramadu",
+        "kategori": "Wisata Infrastruktur"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [110.4109, -6.9667]
+      },
+      "properties": {
+        "name": "Lawang Sewu",
+        "kategori": "Wisata Sejarah"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [110.4203, -6.9731]
+      },
+      "properties": {
+        "name": "Kota Lama",
+        "kategori": "Wisata Sejarah"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.5341, -7.8828]
+      },
+      "properties": {
+        "name": "Jatim Park",
+        "kategori": "Taman Hiburan"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.9528, -7.9425]
+      },
+      "properties": {
+        "name": "Gunung Bromo",
+        "kategori": "Wisata Alam"
+      }
     }
   ]
 }
