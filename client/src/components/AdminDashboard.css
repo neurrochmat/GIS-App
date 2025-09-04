@@ -1,52 +1,50 @@
 .admin-dashboard {
   padding: 24px;
-  background: var(--white);
-  border-radius: 8px;
-  box-shadow: var(--shadow-1);
+  background-color: var(--surface-color);
+  height: 100%;
+  overflow-y: auto;
 }
 
 .dashboard-header {
   margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .dashboard-header h2 {
-  margin: 0 0 16px;
-  color: var(--text-primary);
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 600;
 }
 
 .tab-navigation {
   display: flex;
-  gap: 12px;
-  margin-bottom: 24px;
-  border-bottom: 1px solid var(--divider-color);
-  padding-bottom: 12px;
+  gap: 8px;
+  margin-top: 16px;
 }
 
 .tab-button {
-  padding: 8px 16px;
+  padding: 10px 20px;
   border: none;
-  background: none;
+  background-color: transparent;
   color: var(--text-secondary);
   cursor: pointer;
   font-size: 1rem;
-  position: relative;
+  font-weight: 500;
+  border-radius: var(--border-radius);
+  transition: all var(--transition-speed);
+}
+
+.tab-button:hover {
+  background-color: var(--background-color);
+  color: var(--text-primary);
 }
 
 .tab-button.active {
-  color: var(--primary-color);
+  background-color: var(--primary-color);
+  color: white;
 }
 
-.tab-button.active::after {
-  content: '';
-  position: absolute;
-  bottom: -13px;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: var(--primary-color);
-}
-
-/* Stats Grid */
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -55,42 +53,41 @@
 }
 
 .stat-card {
-  background: var(--background);
-  padding: 20px;
-  border-radius: 8px;
-  text-align: center;
+  background-color: var(--background-color);
+  padding: 24px;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
 }
 
 .stat-card h3 {
-  margin: 0 0 12px;
+  margin: 0 0 8px;
   color: var(--text-secondary);
   font-size: 1rem;
+  font-weight: 500;
 }
 
 .stat-number {
-  font-size: 2rem;
-  font-weight: 500;
+  font-size: 2.5rem;
+  font-weight: 700;
   color: var(--primary-color);
   margin: 0;
 }
 
-/* Recent Activities */
 .recent-activities {
-  background: var(--background);
-  padding: 20px;
-  border-radius: 8px;
+  margin-top: 32px;
 }
 
 .recent-activities h3 {
-  margin: 0 0 16px;
-  color: var(--text-primary);
+  font-size: 1.25rem;
+  margin-bottom: 16px;
 }
 
 .activity-item {
   display: flex;
-  gap: 12px;
+  gap: 16px;
   padding: 12px 0;
-  border-bottom: 1px solid var(--divider-color);
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.95rem;
 }
 
 .activity-item:last-child {
@@ -99,139 +96,65 @@
 
 .activity-time {
   color: var(--text-secondary);
-  font-size: 0.9rem;
-  white-space: nowrap;
+  flex-shrink: 0;
 }
 
-/* User Management */
 .user-table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 16px;
 }
 
 .user-table th,
 .user-table td {
-  padding: 12px;
+  padding: 12px 16px;
   text-align: left;
-  border-bottom: 1px solid var(--divider-color);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .user-table th {
-  background: var(--background);
-  color: var(--text-secondary);
-  font-weight: 500;
+  background-color: var(--background-color);
+  font-weight: 600;
 }
 
 .status-badge {
-  display: inline-block;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 0.9rem;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: capitalize;
 }
 
 .status-badge.active {
-  background: #e8f5e9;
-  color: #2e7d32;
+  background-color: #28a74520;
+  color: #28a745;
 }
 
 .status-badge.banned {
-  background: #ffebee;
-  color: #c62828;
+  background-color: #dc354520;
+  color: #dc3545;
 }
 
 .btn-ban,
 .btn-unban {
-  padding: 4px 8px;
+  padding: 6px 12px;
   border: none;
-  border-radius: 4px;
+  border-radius: var(--border-radius);
   cursor: pointer;
-  font-size: 0.9rem;
 }
 
 .btn-ban {
-  background: #ffebee;
-  color: #c62828;
+  background-color: var(--error-color);
+  color: white;
 }
 
 .btn-unban {
-  background: #e8f5e9;
-  color: #2e7d32;
-}
-
-/* Bulk Upload */
-.bulk-upload {
-  background: var(--background);
-  padding: 20px;
-  border-radius: 8px;
-}
-
-.upload-form {
-  margin: 20px 0;
-}
-
-.file-input-container {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
-
-.btn-upload {
-  padding: 8px 16px;
-  background: var(--primary-color);
+  background-color: var(--success-color);
   color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
 }
 
-.btn-upload:disabled {
-  background: var(--divider-color);
-  cursor: not-allowed;
+.bulk-upload h3 {
+  font-size: 1.25rem;
+  margin-bottom: 16px;
 }
 
-.upload-status {
-  margin: 12px 0;
-  padding: 8px;
-  border-radius: 4px;
-}
-
-.upload-instructions {
-  margin-top: 24px;
-  padding: 16px;
-  background: white;
-  border-radius: 4px;
-}
-
-.upload-instructions h4 {
-  margin: 0 0 12px;
-  color: var(--text-primary);
-}
-
-.upload-instructions ul {
-  margin: 0;
-  padding-left: 20px;
-  color: var(--text-secondary);
-}
-
-@media (max-width: 768px) {
-  .admin-dashboard {
-    padding: 16px;
-  }
-
-  .tab-navigation {
-    flex-wrap: wrap;
-  }
-
-  .stats-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .file-input-container {
-    flex-direction: column;
-  }
-
-  .user-table {
-    display: block;
-    overflow-x: auto;
-  }
-}

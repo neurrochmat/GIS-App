@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import './AdminDashboard.css';
 
@@ -13,12 +13,7 @@ function AdminDashboard({ token }) {
   const [uploadStatus, setUploadStatus] = useState('');
   const [activeTab, setActiveTab] = useState('overview');
 
-  useEffect(() => {
-    fetchStats();
-    fetchUsers();
-  }, [token]);
-
-  const fetchStats = async () => {
+  const fetchStats = useCallback(async () => {
     try {
       const response = await axios.get('http://localhost:5000/api/admin/stats', {
         headers: { Authorization: `Bearer ${token}` }
@@ -27,9 +22,9 @@ function AdminDashboard({ token }) {
     } catch (error) {
       console.error('Error fetching stats:', error);
     }
-  };
+  }, [token]);
 
-  const fetchUsers = async () => {
+  const fetchUsers = useCallback(async () => {
     try {
       const response = await axios.get('http://localhost:5000/api/admin/users', {
         headers: { Authorization: `Bearer ${token}` }
@@ -38,7 +33,12 @@ function AdminDashboard({ token }) {
     } catch (error) {
       console.error('Error fetching users:', error);
     }
-  };
+  }, [token]);
+
+  useEffect(() => {
+    fetchStats();
+    fetchUsers();
+  }, [fetchStats, fetchUsers]);
 
   const handleRoleChange = async (userId, newRole) => {
     try {

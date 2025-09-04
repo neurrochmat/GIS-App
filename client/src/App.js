@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet'
+import MarkerClusterGroup from 'react-leaflet-cluster'
 import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import './components/MarkerCluster.css'
+import { categoryIcons } from './utils/markerIcons'
 import Login from './Login'
 import Register from './Register'
 import WisataForm from './WisataForm'
@@ -24,11 +27,24 @@ function GeoJsonMarkers({ filter, wisataData = [] }) {
       .then(data => setFeatures(data.features || []))
   }, [])
 
+  const getMarkerIcon = (category) => {
+    return categoryIcons[category] || categoryIcons['default'];
+  };
+
   return (
-    <>
+    <MarkerClusterGroup
+      chunkedLoading
+      maxClusterRadius={60}
+      spiderfyOnMaxZoom={true}
+      showCoverageOnHover={false}
+    >
       {/* Render markers from geojson */}
       {features.filter(f => !filter || filter === 'Semua' || f.properties.kategori === filter).map((f, i) => (
-        <Marker key={`geojson-${i}`} position={[f.geometry.coordinates[1], f.geometry.coordinates[0]]}>
+        <Marker 
+          key={`geojson-${i}`} 
+          position={[f.geometry.coordinates[1], f.geometry.coordinates[0]]}
+          icon={getMarkerIcon(f.properties.kategori)}
+        >
           <Popup>
             <b>{f.properties.name}</b><br/>
             {f.properties.kategori}
@@ -38,7 +54,11 @@ function GeoJsonMarkers({ filter, wisataData = [] }) {
 
       {/* Render markers from database */}
       {wisataData.filter(w => !filter || filter === 'Semua' || w.kategori === filter).map((w, i) => (
-        <Marker key={`db-${i}`} position={[w.latitude, w.longitude]}>
+        <Marker 
+          key={`db-${i}`} 
+          position={[w.latitude, w.longitude]}
+          icon={getMarkerIcon(w.kategori)}
+        >
           <Popup>
             <b>{w.name}</b><br/>
             {w.kategori}
@@ -47,7 +67,7 @@ function GeoJsonMarkers({ filter, wisataData = [] }) {
           </Popup>
         </Marker>
       ))}
-    </>
+    </MarkerClusterGroup>
   )
 }
 
@@ -71,6 +91,13 @@ function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [showAdminDashboard, setShowAdminDashboard] = useState(false);
+  const [theme, setTheme] = useState('light');
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    document.documentElement.setAttribute('data-theme', newTheme);
+  };
 
   const handleLocationSelect = (lat, lng) => {
     if (user?.role === 'admin') {
@@ -182,73 +209,80 @@ function App() {
           >
             Logout
           </button>
+          <button onClick={toggleTheme} className="btn btn-secondary">
+            Toggle Theme
+          </button>
         </div>
       </header>
 
-      {showAdminDashboard && user.role === 'admin' ? (
-        <div className="admin-container">
-          <AdminDashboard token={localStorage.getItem('token')} />
-        </div>
-      ) : (
-        <>
-          {user && user.role === 'admin' && (
-            <>
-              <button 
-                className="toggle-sidebar-btn"
-                onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-              >
-                {isSidebarOpen ? '← Tutup Form' : '→ Tambah Data'}
-              </button>
-              <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
-                <WisataForm 
-                  token={localStorage.getItem('token')} 
-                  selectedLocation={selectedLocation}
-                  onSuccess={() => {
-                    fetch('http://localhost:5000/api/wisata')
-                      .then(res => res.json())
-                      .then(data => {
-                        setWisata(data);
-                        setSelectedLocation(null);
-                      })
-                      .catch(err => console.error('Error updating wisata:', err));
-                    setIsSidebarOpen(false);
-                  }} 
-                />
+      <main className="main-content">
+        {showAdminDashboard && user.role === 'admin' ? (
+          <div className="admin-container">
+            <AdminDashboard token={localStorage.getItem('token')} />
+          </div>
+        ) : (
+          <>
+            {user && user.role === 'admin' && (
+              <>
+                <button 
+                  className="toggle-sidebar-btn btn"
+                  onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                >
+                  {isSidebarOpen ? '←' : '→'}
+                </button>
+                <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
+                  <WisataForm 
+                    token={localStorage.getItem('token')} 
+                    selectedLocation={selectedLocation}
+                    onSuccess={() => {
+                      fetch('http://localhost:5000/api/wisata')
+                        .then(res => res.json())
+                        .then(data => {
+                          setWisata(data);
+                          setSelectedLocation(null);
+                        })
+                        .catch(err => console.error('Error updating wisata:', err));
+                      setIsSidebarOpen(false);
+                    }} 
+                  />
+                </div>
+              </>
+            )}
+            
+            <div className="map-wrapper">
+              <div className="control-panel">
+                <label htmlFor="kategori" className="filter-label">Filter Kategori:</label>
+                <select 
+                  id="kategori" 
+                  value={filter} 
+                  onChange={e => setFilter(e.target.value)}
+                  className="filter-select"
+                >
+                  {kategoriList.map(k => (
+                    <option key={k} value={k}>{k}</option>
+                  ))}
+                </select>
               </div>
-            </>
-          )}
 
-          <div className="control-panel">
-            <label htmlFor="kategori" className="filter-label">Filter Kategori:</label>
-            <select 
-              id="kategori" 
-              value={filter} 
-              onChange={e => setFilter(e.target.value)}
-              className="filter-select"
-            >
-              {kategoriList.map(k => (
-                <option key={k} value={k}>{k}</option>
-              ))}
-            </select>
-          </div>
-
-          <div className="map-container">
-            <MapContainer 
-              center={[-7.5, 110]}
-              zoom={7} 
-              style={{ height: '100%', width: '100%' }}
-              contextmenu={true}
-            >
-              <TileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-              />
-              <MapClickHandler onLocationSelect={handleLocationSelect} />
-              <GeoJsonMarkers filter={filter} wisataData={wisata} />
-            </MapContainer>
-          </div>
-        </>
-      )}
+              <div className="map-container">
+                <MapContainer 
+                  center={[-7.5, 110]}
+                  zoom={7} 
+                  style={{ height: '100%', width: '100%' }}
+                  contextmenu={true}
+                >
+                  <TileLayer
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                  />
+                  <MapClickHandler onLocationSelect={handleLocationSelect} />
+                  <GeoJsonMarkers filter={filter} wisataData={wisata} />
+                </MapContainer>
+              </div>
+            </div>
+          </>
+        )}
+      </main>
     </div>
   );
 }

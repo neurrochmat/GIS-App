@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './WisataForm.css';
 
 function WisataForm({ token, onSuccess, selectedLocation }) {
   // Basic info state
